@@ -1,6 +1,7 @@
 import { Stripe } from "stripe";
+import Constants from "expo-constants";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+const stripe = new Stripe(Constants?.expoConfig?.extra?.stripeSecretKey);
 
 export async function POST(request: Request) {
   try {

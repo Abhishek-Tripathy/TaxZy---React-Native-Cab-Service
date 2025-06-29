@@ -1,7 +1,9 @@
 import { neon } from "@neondatabase/serverless";
+import Constants from "expo-constants";
 
 export async function POST(request: Request) {
-  const sql = neon(`${process.env.DATABASE_URL}`);
+  const db_url = Constants?.expoConfig?.extra?.databaseUrl
+  const sql = neon(`${db_url}`);
 
   try {
    const { name, email, clerkId } = await request.json();

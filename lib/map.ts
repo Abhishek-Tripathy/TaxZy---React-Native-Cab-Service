@@ -1,6 +1,7 @@
 import { Driver, MarkerData } from "@/types/type";
+import Constants from "expo-constants";
 
-const olaAPI = process.env.EXPO_PUBLIC_OLA_MAPS_API_KEY;
+const olaAPI = Constants?.expoConfig?.extra?.olaMapsApiKey;
 
 export const generateMarkersFromData = ({
   data,

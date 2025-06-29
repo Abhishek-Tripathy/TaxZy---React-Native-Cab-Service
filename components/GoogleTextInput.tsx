@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 import { icons } from "@/constants";
 import { GoogleInputProps } from "@/types/type";
 import axios from "axios";
+import Constants from "expo-constants";
 
 const GoogleTextInput = ({
   icon,
@@ -35,7 +36,7 @@ const GoogleTextInput = ({
           {
             params: {
               input: text,
-              api_key: process.env.EXPO_PUBLIC_OLA_MAPS_API_KEY,
+              api_key: Constants?.expoConfig?.extra?.olaMapsApiKey,
             },
             headers: {
               'X-Request-Id': generateUUID(),
@@ -63,7 +64,7 @@ const GoogleTextInput = ({
         {
           params: {
             place_id: item.place_id,
-            api_key: process.env.EXPO_PUBLIC_OLA_MAPS_API_KEY,
+            api_key: Constants?.expoConfig?.extra?.olaMapsApiKey,
           },
           headers: {
             'X-Request-Id': generateUUID(),

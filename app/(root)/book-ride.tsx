@@ -7,6 +7,7 @@ import { useDriverStore, useLocationStore } from "@/store";
 import Payment from "@/components/payment";
 import { useEffect, useState } from "react";
 import { StripeProvider } from "@stripe/stripe-react-native";
+import Constants from "expo-constants";
 
 const BookRide = () => {
   const { user } = useUser();
@@ -51,7 +52,7 @@ const BookRide = () => {
 
   return (
     <StripeProvider
-      publishableKey={process.env.EXPO_PUBLIC_STRIPE_PUBLISHABLE_KEY!}
+      publishableKey={Constants?.expoConfig?.extra?.stripePublishableKey}
       merchantIdentifier="merchant.uber.com"
       urlScheme="myapp"
     >

@@ -18,6 +18,7 @@ import {
 } from "@/lib/map";
 import { useDriverStore, useLocationStore, useRouteStore } from "@/store";
 import { Driver, MarkerData } from "@/types/type";
+import Constants from "expo-constants";
 
 // Helper function to decode polyline
 const decodePolyline = (encoded) => {
@@ -102,7 +103,7 @@ const Maps = () => {
 
   try {
     const requestId = Math.random().toString(36).substring(7);
-    const apiKey = process.env.EXPO_PUBLIC_OLA_MAPS_API_KEY;
+    const apiKey = Constants?.expoConfig?.extra?.olaMapsApiKey;
 
     // Verify API key exists
     if (!apiKey) {

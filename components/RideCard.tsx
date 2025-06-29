@@ -2,10 +2,10 @@ import { View, Text, Image } from "react-native";
 import React from "react";
 import { Ride } from "@/types/type";
 import { icons } from "@/constants";
-import { formatDate, formatTime } from "@/lib/utils";
+import Constants from "expo-constants";
 
 export default function RideCard({ ride }: { ride: Ride }) {
-  console.log("Ride page===>", ride);
+  const geo_api_key = Constants?.expoConfig?.extra?.geoapifyApiKey
 
   // Format created_at to IST (accounting for server timezone offset)
   const formatToIST = (dateString) => {
@@ -29,7 +29,7 @@ export default function RideCard({ ride }: { ride: Ride }) {
         <View className="flex flex-row items-center justify-between">
           <Image
             source={{
-              uri: `https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=600&height=400&center=lonlat:${ride.destination_longitude},${ride.destination_latitude}&zoom=14&apiKey=${process.env.EXPO_PUBLIC_GEOAPIFY_API_KEY}`,
+              uri: `https://maps.geoapify.com/v1/staticmap?style=osm-bright&width=600&height=400&center=lonlat:${ride.destination_longitude},${ride.destination_latitude}&zoom=14&apiKey=${geo_api_key}`,
             }}
             className="w-[80px] h-[90px] rounded-lg"
           />

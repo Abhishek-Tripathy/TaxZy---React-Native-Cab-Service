@@ -1,11 +1,13 @@
 import { neon } from "@neondatabase/serverless";
+import Constants from "expo-constants";
 
 export async function GET(request: Request, { id }: { id: string }) {
+  const db_url = Constants?.expoConfig?.extra?.databaseUrl
   if (!id)
     return Response.json({ error: "Missing required fields" }, { status: 400 });
 
   try {
-    const sql = neon(`${process.env.DATABASE_URL}`);
+    const sql = neon(`${db_url}`);
     const response = await sql`
       SELECT
         r.ride_id,

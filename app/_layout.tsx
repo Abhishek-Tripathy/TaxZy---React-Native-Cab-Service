@@ -3,11 +3,13 @@ import { useFonts } from "expo-font";
 import { useEffect } from "react";
 import { ClerkProvider , ClerkLoaded } from "@clerk/clerk-expo";
 import { tokenCache } from '@clerk/clerk-expo/token-cache'
+import Constants from "expo-constants";
 // import { Slot } from "expo-router";
 import "../global.css";
 
 export default function RootLayout() {
-  const publishableKey = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY
+  const publishableKey = Constants?.expoConfig?.extra.clerkPublishableKey!
+ 
   if (!publishableKey) {
   throw new Error(
     "Missing Publishable Key. Please set EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY in your .env",
