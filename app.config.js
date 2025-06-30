@@ -29,6 +29,13 @@ export default {
     favicon: "./assets/images/favicon.png",
   },
   plugins: [
+    [
+      "@stripe/stripe-react-native",
+      {
+        merchantIdentifier: "",
+        enableGooglePay: false,
+      },
+    ],
     "expo-web-browser",
     [
       "expo-router",

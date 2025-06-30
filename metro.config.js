@@ -3,13 +3,14 @@ const { withNativeWind } = require("nativewind/metro");
 
 const config = getDefaultConfig(__dirname);
 
-// config.resolver.extraNodeModules = {
-//   ...config.resolver.extraNodeModules,
-//   "react-native/Libraries/Utilities/codegenNativeCommands": require.resolve(
-//     "react-native/Libraries/Utilities/codegenNativeCommands"
-//   ),
-// };
-
-config.resolver.platforms = ['native', 'android', 'ios'];
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (moduleName.startsWith('react-native/Libraries/Utilities/codegenNativeCommands')) {
+    return {
+      filePath: require.resolve('./empty-module.js'), // Create this file
+      type: 'sourceFile',
+    };
+  }
+  return context.resolveRequest(context, moduleName, platform);
+};
 
 module.exports = withNativeWind(config, { input: "./global.css" });
