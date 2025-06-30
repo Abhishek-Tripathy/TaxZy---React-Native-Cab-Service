@@ -104,7 +104,7 @@ const Maps = () => {
   try {
     const requestId = Math.random().toString(36).substring(7);
     const apiKey = Constants?.expoConfig?.extra?.olaMapsApiKey;
-
+    
     // Verify API key exists
     if (!apiKey) {
       throw new Error("API key is missing");

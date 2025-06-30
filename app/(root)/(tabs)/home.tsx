@@ -54,7 +54,7 @@ export default function Page() {
       
       setRecentRides(result.data || []);
     } catch (err) {
-      console.error("Error fetching rides:", err);
+      console.error("Error fetching rides at home:", err);
       setError(err.message || "Failed to load recent rides");
     } finally {
       setLoading(false);
